@@ -9,7 +9,7 @@ public static class PieceContextExtension
         entity.isMovable = true;
         entity.isInteractive = true;
         entity.AddPosition(new Vector2Int(x, y));
-        entity.AddAsset("Piece" + Rand.game.Int(6));
+        entity.AddAsset("Piece" + Rand.game.Int(6).ToString());
         return entity;
     }
 

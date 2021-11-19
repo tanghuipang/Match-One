@@ -20,10 +20,15 @@ public sealed class ProcessInputSystem : ReactiveSystem<InputEntity>
         var inputEntity = entities.SingleEntity();
         var input = inputEntity.input;
 
-        var e = _contexts.game.GetPieceWithPosition(input.value);
-        if (e != null && e.isInteractive)
+        var es = _contexts.game.GetEntitiesWithPosition(input.value);
+        if (es.Count > 0)
         {
-            e.isDestroyed = true;
+            var e = es.SingleEntity();
+            if (e != null && e.isInteractive)
+            {
+                e.isDestroyed = true;
+            }
         }
+
     }
 }

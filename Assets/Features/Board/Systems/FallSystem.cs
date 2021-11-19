@@ -24,10 +24,13 @@ public sealed class FallSystem : ReactiveSystem<GameEntity>
             for (int y = 1; y < board.y; y++)
             {
                 var position = new Vector2Int(x, y);
-                var e = _contexts.game.GetPieceWithPosition(position);
-                if (e != null && e.isMovable)
+                var es = _contexts.game.GetEntitiesWithPosition(position);
+                var e = es.Count > 0 ? es.SingleEntity() : null;
                 {
-                    moveDown(e, position);
+                    if (e != null && e.isMovable)
+                    {
+                        moveDown(e, position);
+                    }
                 }
             }
         }
